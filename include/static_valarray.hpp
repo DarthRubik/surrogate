@@ -50,6 +50,37 @@ struct static_valarray
     COMPOUND_ASSIGN_ARR(<<=)
     COMPOUND_ASSIGN_ARR(>>=)
 
+
+#define BINARY_OPERATOR(op)\
+    constexpr friend auto operator op\
+        (static_valarray const& a, static_valarray const& b)\
+    {\
+        using new_type = decltype(a.inner[0] op b.inner[0]);\
+        static_valarray<new_type,size> ret;\
+        for (std::size_t x = 0; x < size; x++)\
+            ret.inner[x] = a.inner[x] op b.inner[x];\
+        return ret;\
+    }
+
+    BINARY_OPERATOR(+)
+    BINARY_OPERATOR(-)
+    BINARY_OPERATOR(*)
+    BINARY_OPERATOR(/)
+    BINARY_OPERATOR(%)
+    BINARY_OPERATOR(&)
+    BINARY_OPERATOR(|)
+    BINARY_OPERATOR(^)
+    BINARY_OPERATOR(<<)
+    BINARY_OPERATOR(>>)
+    BINARY_OPERATOR(&&)
+    BINARY_OPERATOR(||)
+
+    BINARY_OPERATOR(==)
+    BINARY_OPERATOR(!=)
+    BINARY_OPERATOR(>=)
+    BINARY_OPERATOR(<=)
+    BINARY_OPERATOR(>)
+    BINARY_OPERATOR(<)
 };
 
 #endif

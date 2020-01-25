@@ -46,5 +46,10 @@ int main()
         assert(x.inner[0] == 2);
         assert(x.inner[1] == 4);
         assert(x.inner[2] == 6);
+
+        x = x * x;
+        assert(x.inner[0] == 4);
+        assert(x.inner[1] == 16);
+        assert(x.inner[2] == 36);
     }
 }
