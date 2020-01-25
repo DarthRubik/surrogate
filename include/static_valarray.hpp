@@ -30,6 +30,44 @@ struct static_valarray
 
     UNARY_OPERATOR(!,)
     UNARY_OPERATOR(!,const)
+
+#define COMPOUND_ASSIGN_ARR(op)\
+    constexpr static_valarray& operator op(static_valarray const& other)\
+    {\
+        for (std::size_t x = 0; x < size; x++)\
+            this->inner[x] op other.inner[x];\
+        return *this;\
+    }
+
+    COMPOUND_ASSIGN_ARR(+=)
+    COMPOUND_ASSIGN_ARR(-=)
+    COMPOUND_ASSIGN_ARR(*=)
+    COMPOUND_ASSIGN_ARR(/=)
+    COMPOUND_ASSIGN_ARR(%=)
+    COMPOUND_ASSIGN_ARR(&=)
+    COMPOUND_ASSIGN_ARR(|=)
+    COMPOUND_ASSIGN_ARR(^=)
+    COMPOUND_ASSIGN_ARR(<<=)
+    COMPOUND_ASSIGN_ARR(>>=)
+
+#define COMPOUND_ASSIGN_VAL(op)\
+    constexpr static_valarray& operator op(value_t const& other)\
+    {\
+        for (std::size_t x = 0; x < size; x++)\
+            this->inner[x] op other;\
+        return *this;\
+    }
+
+    COMPOUND_ASSIGN_VAL(+=)
+    COMPOUND_ASSIGN_VAL(-=)
+    COMPOUND_ASSIGN_VAL(*=)
+    COMPOUND_ASSIGN_VAL(/=)
+    COMPOUND_ASSIGN_VAL(%=)
+    COMPOUND_ASSIGN_VAL(&=)
+    COMPOUND_ASSIGN_VAL(|=)
+    COMPOUND_ASSIGN_VAL(^=)
+    COMPOUND_ASSIGN_VAL(<<=)
+    COMPOUND_ASSIGN_VAL(>>=)
 };
 
 #endif

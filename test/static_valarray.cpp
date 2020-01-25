@@ -36,4 +36,20 @@ int main()
                 decltype(other_thing)
             >::value, "");
     }
+
+    {
+        using test_t = static_valarray<int, 3>;
+
+        test_t x = { 1, 2, 3 };
+
+        x += 10;
+        assert(x.inner[0] == 11);
+        assert(x.inner[1] == 12);
+        assert(x.inner[2] == 13);
+
+        x += x;
+        assert(x.inner[0] == 22);
+        assert(x.inner[1] == 24);
+        assert(x.inner[2] == 26);
+    }
 }
