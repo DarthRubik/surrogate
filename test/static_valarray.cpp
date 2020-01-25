@@ -42,14 +42,9 @@ int main()
 
         test_t x = { 1, 2, 3 };
 
-        x += 10;
-        assert(x.inner[0] == 11);
-        assert(x.inner[1] == 12);
-        assert(x.inner[2] == 13);
-
         x += x;
-        assert(x.inner[0] == 22);
-        assert(x.inner[1] == 24);
-        assert(x.inner[2] == 26);
+        assert(x.inner[0] == 2);
+        assert(x.inner[1] == 4);
+        assert(x.inner[2] == 6);
     }
 }
