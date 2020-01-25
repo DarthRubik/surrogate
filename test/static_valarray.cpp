@@ -1,7 +1,11 @@
 #include <cassert>
 #include <static_valarray.hpp>
 #include <type_traits>
+#include <cstdint>
 
+
+template<typename value_t, std::size_t size>
+using static_valarray = surrogate::static_valarray<value_t,size>;
 
 int main()
 {

@@ -3,6 +3,8 @@
 #include <cstdint>
 #include <utility>
 
+namespace surrogate{
+
 
 template<typename value_t, std::size_t size>
 struct static_valarray
@@ -83,4 +85,6 @@ struct static_valarray
     BINARY_OPERATOR(<)
 };
 
+
+}
 #endif
