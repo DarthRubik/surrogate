@@ -55,5 +55,10 @@ int main()
         assert(x.data[0] == 4);
         assert(x.data[1] == 16);
         assert(x.data[2] == 36);
+
+        x += surrogate::make_sva_literal(100);
+        assert(x.data[0] == 104);
+        assert(x.data[1] == 116);
+        assert(x.data[2] == 136);
     }
 }

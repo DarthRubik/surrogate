@@ -86,5 +86,30 @@ struct static_valarray
 };
 
 
+template<typename value_t>
+struct sva_literal
+{
+    value_t _inner;
+
+    template<std::size_t size>
+    constexpr operator static_valarray<value_t, size>() const
+    {
+        static_valarray<value_t,size> ret;
+        for (value_t& x : ret.data)
+        {
+            x = _inner;
+        }
+        return ret;
+    }
+};
+
+template<typename value_t>
+auto make_sva_literal(value_t const& x)
+{
+    return sva_literal<value_t>{x};
+}
+
+
+
 }
 #endif
