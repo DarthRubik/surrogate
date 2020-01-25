@@ -1,0 +1,5 @@
+#ifndef STATIC_VALARRAY_HPP
+#define STATIC_VALARRAY_HPP
+
+
+#endif
